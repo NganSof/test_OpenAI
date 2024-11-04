@@ -5,6 +5,7 @@ import { isProduct, Products } from "../mock/Products";
 const initialMockData = {
   Products,
   selecItem: {},
+  chooseNumItem: null,
 };
 
 // Tạo slice cho dữ liệu mock
@@ -19,9 +20,12 @@ const ProductSlice = createSlice({
         }
       });
     },
+    chooseNumItem: (state, action) => {
+      state.chooseNumItem = action.payload;
+    },
   },
 });
 
-export const { itemPro } = ProductSlice.actions;
+export const { itemPro, chooseNumItem } = ProductSlice.actions;
 
 export default ProductSlice.reducer;

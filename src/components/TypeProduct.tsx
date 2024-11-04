@@ -1,10 +1,9 @@
-import { useState } from "react";
+import { useSelector } from "react-redux";
 import { isType } from "../mock/Products";
 
 interface isChildrenType {
   itemType: isType;
-  index: number;
-  id: number;
+
   chooseGB: any;
   chooseItem: any;
   setChooseGB: any;
@@ -12,16 +11,16 @@ interface isChildrenType {
 
 const TypeProduct: React.FC<isChildrenType> = ({
   itemType,
-  index,
-  id,
+
   chooseGB,
   chooseItem,
   setChooseGB,
 }) => {
+  const numberItem = useSelector((state: any) => state.mockData.chooseNumItem);
   const { gb, idType } = itemType;
 
   return (
-    <div className="flex justify-around items-center">
+    <div className="flex justify-around items-center mt-1">
       <div
         key={idType}
         onClick={() => {
@@ -31,11 +30,11 @@ const TypeProduct: React.FC<isChildrenType> = ({
         <p
           className={`w-20 cursor-pointer rounded-lg p-2 gap-1 
            ${
-             chooseGB === idType
-               ? "bg-red-400"
-               : chooseItem === id
-               ? "bg-red-700"
-               : "bg-white"
+             chooseItem === numberItem
+               ? idType === chooseGB
+                 ? "bg-red-600"
+                 : "bg-white"
+               : "bg-red-400"
            }
           `}
         >
